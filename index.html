@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Gift Surprise 🎄</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Snowflakes */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            animation: fall linear infinite;
+            color: white;
+            font-size: 1em;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .gift-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            color: #c41e3a;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gift-icon {
+            font-size: 5rem;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn-custom {
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-no {
+            background: #e74c3c;
+            color: white;
+            position: relative;
+        }
+
+        .btn-no.runaway {
+            position: fixed;
+            transition: all 0.1s ease;
+        }
+
+        .warning-text {
+            color: #e74c3c;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            font-weight: 600;
+            animation: pulse 1s infinite;
+        }
+
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .gift-reveal {
+            display: none;
+        }
+
+        .gift-image {
+            max-width: 100%;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: zoomIn 0.8s ease-in;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .celebration {
+            font-size: 1.3rem;
+            color: #27ae60;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .gift-card {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .gift-icon {
+                font-size: 3.5rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .btn-custom {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gift-card">
+            <div class="question-section">
+                <h1>🎄 Merry Christmas! 🎄</h1>
+                <div class="gift-icon">
+                    <img src="assets/img/dudu-cute.gif" alt="" class="gift-icon-img img-fluid" id="giftIcon">
+                </div>
+                <p class="question-text">Do you want to see your Christmas gift?</p>
+                
+                <div class="button-container">
+                    <button class="btn btn-custom btn-yes" id="yesBtn">Yes! 🎉</button>
+                    <button class="btn btn-custom btn-no" id="noBtn">No</button>
+                </div>
+                
+                <p class="warning-text" id="warningText" style="display: none;"></p>
+            </div>
+
+            <div class="gift-reveal" id="giftReveal">
+                <h1>🎉 Your Christmas Gift! 🎉</h1>
+                <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=600&h=400&fit=crop" alt="Christmas Gift" class="gift-image">
+                <p class="celebration">Hope you love your surprise! 🎅✨</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Snowflakes
+        function createSnowflake() {
+            const snowflake = $('<div class="snowflake">❄️</div>');
+            snowflake.css({
+                left: Math.random() * window.innerWidth + 'px',
+                animationDuration: (Math.random() * 3 + 2) + 's',
+                opacity: Math.random(),
+                fontSize: (Math.random() * 10 + 10) + 'px'
+            });
+            $('body').append(snowflake);
+            
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 200);
+
+        // Gift surprise logic
+        let noClickCount = 0;
+        let isRunaway = false;
+
+        $('#yesBtn').click(function() {
+            $('.question-section').fadeOut(500, function() {
+                $('#giftReveal').fadeIn(500);
+            });
+        });
+
+        function moveButton() {
+            const btn = $('#noBtn');
+            const maxX = window.innerWidth - btn.outerWidth();
+            const maxY = window.innerHeight - btn.outerHeight();
+            
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            btn.css({
+                left: randomX + 'px',
+                top: randomY + 'px'
+            });
+        }
+
+        // Desktop hover
+        $('#noBtn').hover(function() {
+            if (isRunaway) {
+                moveButton();
+            }
+        });
+
+
+        // Mobile and desktop click
+        $('#noBtn').click(function(e) {
+            e.preventDefault();
+            noClickCount++;
+            
+            if (noClickCount === 1) {
+                $('#warningText').text('Please click YES! 🙏').fadeIn();
+                $('#giftIcon').attr('src', 'assets/img/no1.gif');
+            } else if (noClickCount === 2) {
+                $('#warningText').text('Come on, just click YES! Pretty please? 🥺').fadeIn();
+                $('#giftIcon').attr('src', 'assets/img/no2.gif');
+            } else if (noClickCount >= 3) {
+                if (!isRunaway) {
+                    isRunaway = true;
+                    $(this).addClass('runaway');
+                    $('#warningText').text('Haha! Now you can\'t click NO anymore! 😄').fadeIn();
+                }
+                moveButton();
+            }
+        });
+
+        // Prevent text selection on buttons
+        $('.btn-custom').on('selectstart', function() {
+            return false;
+        });
+    </script>
+</body>
+</html>
